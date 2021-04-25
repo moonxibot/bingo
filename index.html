@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카러플 빙고!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="title">카러플 빙고</h1>
+    <p style="margin-left: 20px;">12빙고(모든 칸 채울) 시 완료</p>
+    <div id="main">
+        <div id="bingo"></div>
+        <div id="addDiv">
+            <button class="btn" style="background-color: #4d91ff;" onclick="algo(1)">1회 뽑기</button>
+            <button class="btn" style="background-color: #9b61ff;" onclick="algo(10)">10회 뽑기</button>
+            <button class="btn" style="background-color: #ff6161;" onclick="algo(50)" hidden id="go50">50회 뽑기</button>
+        </div>
+    </div>
+
+    <div id="popupBlack" hidden></div>
+    <div id="popup" hidden>
+        <h1 id="popupTitle">제목이 표시됩니다.</h1>
+        <p id="popupContent">내용이 표시됩니다.</p>
+        <button onclick="closePopup()" class="btn" style="background-color: #4d91ff; color: white; margin-top: 1vh;">알겠습니다!</button>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
