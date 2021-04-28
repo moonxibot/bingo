@@ -4,8 +4,8 @@ let stage = 0;
 const pattern = [
     [
         {len: 10, choice: 5},
-        {len: 17, choice: 27},
-        {len: 24, choice: 40},
+        {len: 20, choice: 25},
+        {len: 24, choice: 35},
     ]
 ]
 
@@ -30,6 +30,11 @@ const popup = {
     },
     close: () => {
         document.getElementById("pop").hidden = true;
+    },
+    done: () => {
+        const num = ticket;
+        popup.open("축하드립니다!", `당신은 ${num}번의 시도 끝에 완료하였습니다!<br>기록을 공유해보세요 :)`);
+        document.getElementById("btnDiv").hidden = true;
     }
 };
 
@@ -38,7 +43,7 @@ const select = {
     selected: [],
     select: {
         new: () => {
-            if (select.selected.length >= bingonum * bingonum - 1) {
+            if (select.selected.length > bingonum * bingonum - 1) {
                 return undefined
             } else {
                 let value = random.random(0, bingonum * bingonum - 1);
@@ -55,7 +60,7 @@ const select = {
                 select.select.new()
             } 
             else {
-                const num = random.random(0, select.selected.length-1);
+                const num = select.selected[random.random(0, select.selected.length-1)]
                 select.select.color(num)
                 return select.selected[num]
             }
@@ -73,16 +78,23 @@ const select = {
         }
     },
     run: () => {
+        const len = select.selected.length
+
         //천장 확인
-        if (ticket > 500) {
-            select.select.new()
+        if (ticket >= 700) {
+            popup.done()
             return true;
         }
 
-        const len = select.selected.length
+        //빙고판 달성했는지 확인
+        if (select.selected.length == bingonum * bingonum) {
+            popup.done()
+            return true;
+
+        }
 
         for (let i in pattern[stage]) {
-            if (len < pattern[stage][i]["len"]) {
+            if (len <= pattern[stage][i]["len"]) {
                 if (random.choice(pattern[stage][i]["choice"])) {
                     select.select.new()
                 } else {
@@ -92,12 +104,12 @@ const select = {
             }
         }
 
-        //pattern에 해당되지 않을 경우 매우 희박한 확률:
-        if (random.choice(50) && ticket >= 300) {
+        //마지막 1개
+        if (ticket >= 500 && random.choice(50)) {
             select.select.new()
         } else {
             select.select.prev()
-        };
+        }
         return true;
     }
 };
@@ -117,13 +129,14 @@ for (let row = 0; row < bingonum; row++) {
 
 //<<runevent> function = event when btn clicked
 function runevent(num) {
-    const btnDiv = document.getElementById("btnDiv")
+    const btnDiv = document.getElementById("btnDiv");
+    const ms = 300
+    ticket += num
+
     btnDiv.hidden = true;
 
     for (let i=0; i<num; i++) {
         setTimeout(() => {
-            ticket++
-
             //30개 버튼 오픈?
             if (ticket == 100) {
                 document.getElementById("go30").hidden = false;
@@ -131,10 +144,12 @@ function runevent(num) {
             }
 
             select.run()
-        }, i * 300)
+        }, i * ms)
     }
 
     setTimeout(() => {
-        btnDiv.hidden = false;
-    }, num * 300)
+        if (select.selected.length !== bingonum * bingonum) {
+            btnDiv.hidden = false;
+        }
+    }, num * ms)
 }
