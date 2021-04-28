@@ -10,24 +10,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="title">카러플 빙고</h1>
-    <p style="margin-left: 20px;">12빙고(모든 칸 채울) 시 완료</p>
-    
-    <div id="bingo"></div>
-    <div id="btnDiv">
-        <button class="btn" style="background-color: #4d91ff;" onclick="runevent(1)">1회 뽑기</button>
-        <button class="btn" style="background-color: #9b61ff;" onclick="runevent(10)">10회 뽑기</button>
-        <button class="btn" style="background-color: #ff6161;" onclick="runevent(50)" hidden id="go30">30회 뽑기</button>
-    </div>
-
-    <!--팝업-->
-    <div id="pop" hidden>
-        <div id="popblack"></div>
-        <div id="popwin">
-            <h1 id="poptitle" style="margin-bottom: 0.5vh;">제목이 표시됩니다.</h1>
-            <p id="popcontent">popup.open content param missing.</p>
-            <button onclick="popup.close()" style="margin-top: 1vh;">확인</button>
+    <div id="main">
+        <h1 id="title">카러플 빙고</h1>
+        <p style="margin-left: 20px;">12빙고(모든 칸 채울) 시 완료</p>
+        
+        <div id="bingo"></div>
+        <div id="btnDiv">
+            <button class="btn" style="background-color: #4d91ff;" onclick="runevent(1)">1회 뽑기</button>
+            <button class="btn" style="background-color: #9b61ff;" onclick="runevent(10)">10회 뽑기</button>
+            <button class="btn" style="background-color: #ff6161;" onclick="runevent(50)" hidden id="go30">30회 뽑기</button>
         </div>
+
+        <!--팝업-->
+        <div id="pop" hidden>
+            <div id="popblack"></div>
+            <div id="popwin">
+                <h1 id="poptitle" style="margin-bottom: 0.5vh;">제목이 표시됩니다.</h1>
+                <p id="popcontent">popup.open content param missing.</p>
+                <button onclick="popup.close()" style="margin-top: 1vh;">확인</button>
+            </div>
+        </div>
+
+        <p style="margin-top: 1vh;">모든 소스코드는 <a href="https://github.com/moonxibot/bingo" target="_blank">이곳</a>에 공개되어 있습니다.</p>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> <!--jquery-->

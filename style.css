@@ -3,6 +3,10 @@
     font-family: 'NanumSquare';
     margin: 0;
 }
+#main {
+    text-align: center;
+    margin-top: 50px;
+}
 button {
     background-color: #16D8A3;
     color: white;
@@ -38,10 +42,6 @@ button {
     margin-left: 20px;
 }
 
-#main {
-    margin-top: 3vh;
-    margin-left: 20px;
-}
 #btnDiv {
     margin-top: 1vh;
 }
